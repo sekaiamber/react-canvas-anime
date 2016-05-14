@@ -1,9 +1,13 @@
 import * as React from "react";
+import { ReactCanvas } from "./../reactCanvas/reactCanvas";
+import { canvasOption } from './canvasOption';
 
-export interface IndexProps { compiler: string; framework: string; }
-
-export class Index extends React.Component<IndexProps, {}> {
-    render() {
-        return <h1>Hello from {this.props.compiler} and {this.props.framework}!</h1>;
-    }
+export class Index extends React.Component<{}, {}> {
+  render() {
+    return (
+      <div>
+        <ReactCanvas {...canvasOption} />
+      </div>
+    );
+  }
 }
