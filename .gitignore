@@ -5,3 +5,4 @@ build/
 tsdist/
 jsconfig.json
 typings/
+_source/
