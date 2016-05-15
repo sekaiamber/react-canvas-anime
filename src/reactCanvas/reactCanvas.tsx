@@ -80,11 +80,18 @@ export class ReactCanvas extends React.Component<IReactCanvasProps, IReactCanvas
   }
   // event
   handleClick(e: MouseEvent) {
+    let list: IReactCanvasComponent[] = [];
     for (var key in this.props.components) {
       if (this.props.components.hasOwnProperty(key)) {
-        var component = this.props.components[key];
-        if (component.onClick) {
-          component.onClick(e, this);
+        list[list.length] = this.props.components[key];
+      }
+    }
+    list.sort((a, b) => b.zindex - a.zindex);
+    for (var i = 0; i < list.length; i++) {
+      var component = list[i];
+      if (component.onClick) {
+        if (component.onClick(e, this) == false) {
+          break;
         }
       }
     }

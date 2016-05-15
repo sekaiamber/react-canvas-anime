@@ -9,7 +9,7 @@ export interface IReactCanvasComponent {
   draw(context: CanvasRenderingContext2D, canvas: ReactCanvas): void;
   // event
   onLoaded(callback: () => void): void;
-  onClick?(e: MouseEvent, canvas: ReactCanvas): void;
+  onClick?(e: MouseEvent, canvas: ReactCanvas): void | boolean;
 }
 
 export class ReactCanvasComponent implements IReactCanvasComponent {
