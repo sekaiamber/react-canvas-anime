@@ -10,6 +10,8 @@ type Star = {
   shiningSpeed: number,
   shiningDirection: number,
   halo?: Halo,
+  width?: number,
+  height?: number
 };
 // 光晕
 type Halo = {
@@ -34,12 +36,14 @@ export class StarComponent extends ReactCanvasImageComponent {
   buildStar(x: number, y: number, halo?: Halo): Star {
     let ret: Star = {
       x: x,
-      y: y,
       scale: Math.random() * (this.options.scale[1] - this.options.scale[0]) + this.options.scale[0],
+      y: y,
       alpha: Math.random(),
       shiningSpeed: Math.random() * .015,
       shiningDirection: Math.random() > .5 ? 1 : -1
     }
+    ret.height = 60 * ret.scale;
+    ret.width = 60 * ret.scale;
     if (halo) {
       ret.halo = halo;
     }
@@ -52,7 +56,7 @@ export class StarComponent extends ReactCanvasImageComponent {
       context.globalAlpha = star.alpha;
       context.drawImage(this.image,
         0, 0, 60, 60,
-        star.x, star.y, 60 * star.scale, 60 * star.scale
+        star.x, star.y, star.width, star.height
       );
       // 绘制光晕
       if (star.halo) {

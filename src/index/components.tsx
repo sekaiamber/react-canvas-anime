@@ -6,6 +6,8 @@ import { WaveComponent } from './components/waveComponent';
 import { IslandComponent } from './components/islandComponent';
 import { StarComponent } from './components/starComponent';
 import { SprayComponent } from './components/sprayComponent';
+import { CloudComponent } from './components/cloudComponent';
+import { LightComponent } from './components/lightComponent';
 
 const BackgroundComponent = new ReactCanvasLinearGradientFillRectComponent(
   {x0: 0, y0: 0, x1: 0, y1: 680},
@@ -25,6 +27,11 @@ let star = new StarComponent(25);
 star.zindex = 10;
 components.push(star);
 
+// add cloud
+let cloud = new CloudComponent(8);
+cloud.zindex = 20;
+components.push(cloud);
+
 // add island
 let island = new IslandComponent();
 island.zindex = 50;
@@ -42,5 +49,10 @@ for (var i = 0; i < 6; i++) {
   component.zindex = 100 - i;
   components.push(component);
 }
+
+// add light
+let light = new LightComponent();
+light.zindex = 200;
+components.push(light);
 
 export { components };

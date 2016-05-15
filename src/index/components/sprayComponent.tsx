@@ -52,7 +52,6 @@ export class SprayComponent extends ReactCanvasImageComponent {
   
   draw(context: CanvasRenderingContext2D) {
     if (this.alpha != 0) {
-      console.log(this.x, this.y)
       context.globalAlpha = this.alpha;
       context.drawImage(this.image, this.x, this.y, 123, 136);
     }
