@@ -1,6 +1,7 @@
 import { ReactCanvasImageComponent } from './../../reactCanvas/canvasComponents';
 import { ReactCanvas } from './../../reactCanvas/reactCanvas';
 import { StarImageSrc } from './../const';
+const Utils = ReactCanvas.Utils;
 
 type Star = {
   x: number,
@@ -27,8 +28,8 @@ export class StarComponent extends ReactCanvasImageComponent {
   ) {
     super(StarImageSrc);
     for (let i = 0; i < count; i++) {
-      let x = Math.floor(Math.random() * this.options.width + this.options.x);
-      let y = Math.floor(Math.random() * this.options.height + this.options.y);
+      let x = Utils.round(Math.random() * this.options.width + this.options.x);
+      let y = Utils.round(Math.random() * this.options.height + this.options.y);
       this.stars.push(this.buildStar(x, y));
     }
   }
@@ -42,8 +43,8 @@ export class StarComponent extends ReactCanvasImageComponent {
       shiningSpeed: Math.random() * .015,
       shiningDirection: Math.random() > .5 ? 1 : -1
     }
-    ret.height = 60 * ret.scale;
-    ret.width = 60 * ret.scale;
+    ret.height = Utils.round(60 * ret.scale);
+    ret.width = Utils.round(60 * ret.scale);
     if (halo) {
       ret.halo = halo;
     }
@@ -118,6 +119,8 @@ export class StarComponent extends ReactCanvasImageComponent {
     star.shiningDirection = -1;
     star.x -= star.scale * 30;
     star.y -= star.scale * 30;
+    star.x = Utils.round(star.x);
+    star.y = Utils.round(star.y);
     this.stars.push(star);
   }
   

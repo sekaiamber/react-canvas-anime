@@ -1,6 +1,7 @@
 import { ReactCanvasImageComponent } from './../../reactCanvas/canvasComponents';
 import { ReactCanvas } from './../../reactCanvas/reactCanvas';
 import { SprayImageSrc } from './../const';
+const Utils = ReactCanvas.Utils;
 
 type Frame = {
   from: {
@@ -53,7 +54,10 @@ export class SprayComponent extends ReactCanvasImageComponent {
   draw(context: CanvasRenderingContext2D) {
     if (this.alpha != 0) {
       context.globalAlpha = this.alpha;
-      context.drawImage(this.image, this.x, this.y, 123, 136);
+      context.drawImage(this.image,
+        this.currentFrame.speed.x < .25 ? this.x : Utils.round(this.x),
+        this.currentFrame.speed.y < .25 ? this.y : Utils.round(this.y),
+        123, 136);
     }
   }
   

@@ -1,4 +1,6 @@
 import { ReactCanvasComponent } from './../canvasComponents'
+import { ReactCanvas } from './../reactCanvas';
+const Utils = ReactCanvas.Utils;
 
 interface Linear {
    x0: number, y0: number, x1: number, y1: number
@@ -17,8 +19,25 @@ export class ReactCanvasLinearGradientFillRectComponent extends ReactCanvasCompo
   ) {
     super();
     this.colors = colors;
+    
+    this.linear = {
+      x0: Utils.round(this.linear.x0),
+      y0: Utils.round(this.linear.y0),
+      x1: Utils.round(this.linear.x1),
+      y1: Utils.round(this.linear.y1)
+    }
+    this.rect = {
+      x: Utils.round(this.rect.x),
+      y: Utils.round(this.rect.y),
+      width: Utils.round(this.rect.width),
+      height: Utils.round(this.rect.height)
+    }
+    for (let i = 0; i < this.colors.length; i++) {
+      let color = this.colors[i];
+      color[0] = Utils.round(color[0]);
+    }
   }
-  
+
   draw(context: CanvasRenderingContext2D) {
     let gr = context.createLinearGradient(this.linear.x0, this.linear.y0, this.linear.x1, this.linear.y1);
     for (let i = 0; i < this.colors.length; i++) {

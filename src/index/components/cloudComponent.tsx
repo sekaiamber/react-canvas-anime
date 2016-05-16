@@ -1,6 +1,7 @@
 import { ReactCanvasImageComponent } from './../../reactCanvas/canvasComponents';
 import { ReactCanvas } from './../../reactCanvas/reactCanvas';
 import { CloudImageSrc } from './../const';
+const Utils = ReactCanvas.Utils;
 
 type Cloud = {
   x: number,
@@ -28,16 +29,16 @@ export class CloudComponent extends ReactCanvasImageComponent {
   buildCloud(index: number, count: number): Cloud {
     let interval = this.options.width / count;
     let ret: Cloud = {
-      x: Math.floor(Math.random() * interval + index * interval),
-      y: Math.floor(Math.random() * this.options.height + this.options.y),
+      x: Utils.round(Math.random() * interval + index * interval),
+      y: Utils.round(Math.random() * this.options.height + this.options.y),
       alpha: 1,
       scale: Math.random() * (this.options.scale[1] - this.options.scale[0]) + this.options.scale[0],
       zindex: Math.random(),
       speed: 1
     }
     // 313 x 119
-    ret.width = Math.floor(313 * ret.scale);
-    ret.height = Math.floor(119 * ret.scale);
+    ret.width = Utils.round(313 * ret.scale);
+    ret.height = Utils.round(119 * ret.scale);
     ret.speed = ret.zindex * (this.options.speed[1] - this.options.speed[0]) + this.options.speed[0];
     ret.alpha = ret.zindex * (this.options.alpha[1] - this.options.alpha[0]) + this.options.alpha[0];
     return ret;
@@ -49,7 +50,7 @@ export class CloudComponent extends ReactCanvasImageComponent {
       context.globalAlpha = cloud.alpha;
       context.drawImage(this.image,
         0, 0, 313, 119,
-        cloud.x, cloud.y, cloud.width, cloud.height
+        cloud.speed < .25 ? cloud.x : Utils.round(cloud.x), cloud.y, cloud.width, cloud.height
       );
     }
   }
@@ -60,7 +61,7 @@ export class CloudComponent extends ReactCanvasImageComponent {
       cloud.x += cloud.speed;
       if (cloud.x > this.options.width) {
         cloud.x = this.options.x - cloud.width - 1;
-        cloud.y = Math.floor(Math.random() * this.options.height + this.options.y);
+        cloud.y = Utils.round(Math.random() * this.options.height + this.options.y);
       }
     }
   }

@@ -32,7 +32,7 @@ export class LightComponent extends ReactCanvasImageComponent {
       context.globalAlpha = this.alpha;
       context.drawImage(
         this.image,
-        0, 0, 317, 66, this.x, this.y, 317, 66
+        this.x, this.y, 317, 66
       )
     }
   }
