@@ -33,3 +33,12 @@ $ npm run deploy
 $ tsc
 ```
 2. 在`/tsdist`中获得es5脚本
+
+## 性能优化
+
+1. 使用离屏Canvas
+2. 位置信息取整：
+  1. `Math.floor(a[i])`, array[100000], 1000 times, 230ms
+  2. `(0.5 + A[i]) | 0`, array[100000], 1000 times, 160ms
+  3. `~~(0.5 + A[i])`, array[100000], 1000 times, 160ms
+  4. `(0.5 + A[i]) << 0`, 1000 times, 155ms

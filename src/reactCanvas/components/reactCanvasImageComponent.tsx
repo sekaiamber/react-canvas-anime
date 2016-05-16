@@ -1,4 +1,6 @@
 import { ReactCanvasComponent } from './../canvasComponents'
+import { ReactCanvas } from './../reactCanvas';
+const Utils = ReactCanvas.Utils;
 
 export class ReactCanvasImageComponent extends ReactCanvasComponent {
   constructor(
@@ -25,12 +27,20 @@ export class ReactCanvasImageComponent extends ReactCanvasComponent {
     this.drawMode = 0;
     if (offsetX != undefined) {
       this.drawMode = 1;
+      this.offsetX = Utils.round(this.offsetX);
+      this.offsetY = Utils.round(this.offsetY);
     }
     if (width != undefined) {
       this.drawMode = 2;
+      this.width = Utils.round(this.width);
+      this.height = Utils.round(this.height);
     }
     if (canvasOffsetX != undefined) {
       this.drawMode = 3;
+      this.canvasOffsetX = Utils.round(this.canvasOffsetX);
+      this.canvasOffsetY = Utils.round(this.canvasOffsetY);
+      this.canvasImageWidth = Utils.round(this.canvasImageWidth);
+      this.canvasImageHeight = Utils.round(this.canvasImageHeight);
     }
   }
 
