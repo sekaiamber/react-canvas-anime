@@ -1,0 +1,6 @@
+{
+  "name": "React-canvas-anime",
+  "tagline": "这个项目是自己做着玩的，用来使用Canvas绘制一幅图，使用React组件化的尝试。",
+  "body": "# react-canvas-anime\r\n这个项目是自己做着玩的，用来使用Canvas绘制一幅图，使用React组件化的尝试。\r\n\r\n## 开发\r\n\r\n1. 安装依赖\r\n```shell\r\n$ cd path/to/repo\r\n$ npm install -g typescript typings webpack\r\n$ npm install\r\n```\r\n\r\n2. 运行\r\n```shell\r\n$ npm run dev\r\n```\r\n\r\n3. 浏览`http://localhost:8080`\r\n\r\n## 部署\r\n\r\n1. 打包\r\n```shell\r\n$ npm run deploy\r\n```\r\n\r\n2. 在`/dist`中找到静态文件\r\n\r\n## 编译为es5\r\n\r\n1. 编译\r\n```shell\r\n$ tsc\r\n```\r\n2. 在`/tsdist`中获得es5脚本\r\n\r\n## 性能优化\r\n\r\n1. 使用离屏Canvas\r\n2. 位置信息取整：\r\n  1. `Math.floor(a[i])`, array[100000], 1000 times, 230ms\r\n  2. `(0.5 + A[i]) | 0`, array[100000], 1000 times, 160ms\r\n  3. `~~(0.5 + A[i])`, array[100000], 1000 times, 160ms\r\n  4. `(0.5 + A[i]) << 0`, 1000 times, 155ms",
+  "note": "Don't delete this file! It's used internally to help with page regeneration."
+}
